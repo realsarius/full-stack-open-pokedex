@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      
+
 jobs:
   hello_world_job:
     runs-on: ubuntu-20.04
@@ -12,3 +12,9 @@ jobs:
       - name: Say hello
         run: |
           echo "Hello, World!"
+      - name: Print the date
+        run: |
+          date
+      - name: List directory content
+        run: |
+          ls -l
