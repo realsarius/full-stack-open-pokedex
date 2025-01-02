@@ -32,8 +32,9 @@ module.exports = {
       'single',
     ],
     'semi': [
-      'always',
-    ],
+      'error',
+      'always']
+    ,
     'eqeqeq': 'error',
     'no-trailing-spaces': 'error',
     'object-curly-spacing': [
@@ -45,4 +46,4 @@ module.exports = {
     'no-console': 'error',
     'react/prop-types': 0,
   },
-}
+};
