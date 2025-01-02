@@ -1,4 +1,4 @@
-name: Deployment pipeline
+name: simple_deployment_pipeline
 
 on:
   push:
@@ -7,19 +7,25 @@ on:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
-      - name: Checkout code
+      - name: Checkout code (run actions/checkout@v3)
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: Setup Node.js (run actions/checkout@v3)
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Install dependencies
+      - name: npm install
         run: npm install
 
-      - name: Lint and Fix
+      - name: lint
         run: npx eslint './**/*.{js,jsx}' --fix
+
+      - name: build
+        run: npm run build
+
+      - name: test
+        run: npm test
