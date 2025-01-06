@@ -1,4 +1,4 @@
-const { test, describe, expect, beforeEach } = require('@playwright/test');
+const { test, describe, expect } = require('@playwright/test');
 
 // const baseUrl = 'http://localhost:8080';
 
