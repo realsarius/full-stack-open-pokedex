@@ -28,4 +28,4 @@ jobs:
         run: npm run build
 
       - name: unit
-        run: npm unit
+        run: npm test
