@@ -1,4 +1,4 @@
-name: e2e e2e-tests
+name: e2e e2e
 on:
   push:
     branches: [ main, master ]
@@ -17,7 +17,7 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-    - name: Run Playwright e2e-tests
+    - name: Run Playwright e2e
       run: npx playwright test
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}

@@ -11,17 +11,18 @@ const { defineConfig, devices } = require('@playwright/test');
  * @see https://playwright.dev/docs/test-configuration
  */
 module.exports = defineConfig({
-  testDir: './e2e-tests',
-  /* Run e2e-tests in files in parallel */
+  testDir: './tests/e2e/',
+  /* Run e2e in files in parallel */
   fullyParallel: true,
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
+  /* Fail the build on CI if you accidentally left unit.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel e2e-tests on CI. */
+  /* Opt out of parallel e2e on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
+  testMatch: ['**/*.e2e.test.js', '**/*.e2e.spec.js'],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
 
 
@@ -63,7 +64,7 @@ module.exports = defineConfig({
     // },
   ],
 
-  /* Run your local dev server before starting the e2e-tests */
+  /* Run your local dev server before starting the e2e */
   webServer: {
     command: 'npm run start',
     url: 'http://127.0.0.1:3000',
@@ -74,7 +75,7 @@ module.exports = defineConfig({
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: 'http://127.0.0.1:3000',
 
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    /* Collect trace when retrying the failed unit. See https://playwright.dev/docs/trace-viewer */
     // trace: 'on-first-retry',
   },
 
