@@ -45,6 +45,7 @@ module.exports = {
     historyApiFallback: true,
     port: 3000,
     open: true,
+    allowedHosts: ['localhost', '127.0.0.1', 'render.com', 'onrender.com'],
   },
   plugins: [
     new HtmlWebPackPlugin({
