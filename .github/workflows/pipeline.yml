@@ -36,7 +36,8 @@ jobs:
         run: npm test
 
   tag_release:
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged
+    needs: [ simple_deployment_pipeline ]
     runs-on: ubuntu-22.04
     permissions:
       contents: write
@@ -53,18 +54,3 @@ jobs:
           WITH_V: true
           PRERELEASE: true
           DEFAULT_BUMP: patch
-#
-#  tag_release:
-#    needs: [ simple_deployment_pipeline ]
-#    runs-on: ubuntu-22.04
-#    if: github.event_name == 'push' && github.ref == 'refs/heads/main' # Ensure it's triggered on push to main
-#    steps:
-#      - uses: actions/checkout@v4
-#        with:
-#          fetch-depth: '0'
-#
-#      - name: Bump version and push tag
-#        uses: anothrNick/github-tag-action@1.71.0
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#          DEFAULT_BUMP: patch
