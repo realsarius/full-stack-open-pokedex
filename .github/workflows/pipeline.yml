@@ -1,19 +1,24 @@
-name: simple_deployment_pipeline
+name: Deployment pipeline
 
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
 
 jobs:
-  lint:
+  simple_deployment_pipeline:
     runs-on: ubuntu-22.04
-
     steps:
       - name: Checkout code (run actions/checkout@v3)
         uses: actions/checkout@v3
 
-      - name: Setup Node.js (run actions/checkout@v3)
+      - name: Setup Node.js (run actions/setup-node@v3)
         uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -29,3 +34,13 @@ jobs:
 
       - name: unit
         run: npm test
+
+  tag_release:
+    runs-on: ubuntu-22.04
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' # Ensure it's triggered on push to main
+    steps:
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.71.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
