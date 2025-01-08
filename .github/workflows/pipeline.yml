@@ -36,6 +36,7 @@ jobs:
         run: npm test
 
   tag_release:
+    needs: [simple_deployment_pipeline]
     runs-on: ubuntu-22.04
     if: github.event_name == 'push' && github.ref == 'refs/heads/main' # Ensure it's triggered on push to main
     steps:
