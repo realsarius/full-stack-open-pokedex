@@ -35,22 +35,22 @@ jobs:
       - name: unit
         run: npm test
 
-  tag_release:
-    if: github.event.pull_request.merged
-    needs: [ simple_deployment_pipeline ]
-    runs-on: ubuntu-22.04
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.merge_commit_sha }}
-          fetch-depth: '0'
-
-      - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@1.71.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: true
-          PRERELEASE: true
-          DEFAULT_BUMP: patch
+#  tag_release:
+#    if: github.event.pull_request.merged
+#    needs: [ simple_deployment_pipeline ]
+#    runs-on: ubuntu-22.04
+#    permissions:
+#      contents: write
+#    steps:
+#      - uses: actions/checkout@v4
+#        with:
+#          ref: ${{ github.event.pull_request.merge_commit_sha }}
+#          fetch-depth: '0'
+#
+#      - name: Bump version and push tag
+#        uses: anothrNick/github-tag-action@1.71.0
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          WITH_V: true
+#          PRERELEASE: true
+#          DEFAULT_BUMP: patch
